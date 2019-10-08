@@ -1,1 +1,17 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+	<category label="Přihlášení">
+    <setting label="Email / login" type="text" id="username" default=""/>
+    <setting label="Heslo" type="text" id="password" option="hidden" enable="!eq(-1,false)" default=""/>
+    <setting label="Pin" type="text" id="pin" option="hidden" enable="!eq(-1,false)" default=""/>
+    <setting label="Identifikace zařízení" id="idd" type="enum" values="Android|iOS|Smart TV" enable="!eq(-2,false)" default="0"/>
+    <setting type="sep"/>
+    <setting label="Device Id" type="text" id="id" default="" enable="false"/>
+    <setting label="Password" type="text" id="passwordid" option="hidden" default="" enable="false"/>
+	</category>
+	<category label="Ostatní">
+    <setting label="Kvalita videa" id="quality" type="enum" values="HD  H.265|HD  H.264|SD  H.264" default="0"/>
+    <setting label="Loga kanálů" id="logo" type="enum" values="Barevná|Bílá" default="0"/>
+   <setting label="Řazení pořadů" id="sorting" type="enum" values="Nejnovější|Nejstarší" default="0"/>
+	</category>
+</settings>
