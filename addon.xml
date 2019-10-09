@@ -16,11 +16,38 @@ provider-name="Sároš">
   <assets>
     <icon>icon.png</icon>
   </assets>
-  <news>30.3.2019: informace o pořadu v kontextovém menu, vyhledávání pořadu
-31.3.2019: odebrání nedostupných pořadů ze seznamu, možnost zvolit loga kanálů barevné/bílé
-2.4.2019: možnost uložit pořad
-23.5.2019: řazení pořadů Nejnovější/Nejstarší (volitelně)
-23.9.2019: přidán do nastavení pin pro rodičovský zámek
+  <news>v1.5.0 (2019-09-24)
+- přidán pin (rodičovský zámek) do nastavení
+
+v1.4.1 (2019-05-23)
+- Řazení poradů Nejnovější/Nejstarší (volitelně)
+
+v1.4.0 (2019-04-02)
+- Možnost uložit pořad
+
+v1.3.0 (2019-03-31)
+- Odebráné pořady ze seznamu které nejsou dostupné. Tedy uplynula doba pro zpětné přehrávání (různé u jednotlivých kanálů), nebo pořad ještě nebyl odvysílán. Aktuální pořad je live.
+- Volba loga kanálu - barevné/bílé
+
+v1.1.0 (2019-03-27)
+- Informace o pořadu v kontextovém menu
+- Vyhledávání pořadu
+
+v1.0.0 (2019-03-25)
+- První vydání
+
+v1.2.0 (2019-05-02)
+  - přidán rok do názvu v kategorii "Filmy - všechny"
+  - do názvu přidán jazyk (nemusí být vždy aktuální)
+  - uložení do knihovny - přepíše se, pokud již existuje (aktualizuje se)
+
+v1.1.0 (2019-04-29)
+  - kategorie "Všechny filmy", no je jich hodně, ale aby to bylo komplet
+  - zobrazení infa v kategoriích "Nově přidané" a "Nejvíce sledované"
+  - možnost přehrát trailer (pokud je dostupný)
+
+v0.1.0 (2019-04-16)
+  - první vydání
   </news>
 </extension>
 </addon>
