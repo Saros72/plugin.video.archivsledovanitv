@@ -1,3 +1,6 @@
+v1.5.1 (2019-11-13)
+- opraveno přehrávání uložených pořadů
+
 v1.5.0 (2019-09-24)
 - přidán pin (rodičovský zámek) do nastavení
 
@@ -17,16 +20,3 @@ v1.1.0 (2019-03-27)
 
 v1.0.0 (2019-03-25)
 - První vydání
-
-v1.2.0 (2019-05-02)
-  - přidán rok do názvu v kategorii "Filmy - všechny"
-  - do názvu přidán jazyk (nemusí být vždy aktuální)
-  - uložení do knihovny - přepíše se, pokud již existuje (aktualizuje se)
-
-v1.1.0 (2019-04-29)
-  - kategorie "Všechny filmy", no je jich hodně, ale aby to bylo komplet
-  - zobrazení infa v kategoriích "Nově přidané" a "Nejvíce sledované"
-  - možnost přehrát trailer (pokud je dostupný)
-
-v0.1.0 (2019-04-16)
-  - první vydání

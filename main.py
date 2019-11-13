@@ -93,7 +93,7 @@ def list_records():
                 logo = "https://sledovanitv.cz/cache/biglogos/" + d["channel"] + "-white.png"
             list_item.setArt({'thumb':logo , 'icon': logo, 'fanart': d["event"]['backdrop']})
             list_item.setInfo('video', {'mediatype' : 'movie', 'title': d["title"], 'plot': d["event"]["description"]})
-            url = get_url(action='play', eventid = d["event"]["eventId"])
+            url = get_url(action='play_record', eventid = d["id"])
             list_item.setProperty('IsPlayable', 'true')
             list_item.addContextMenuItems([('Smazat pořad','XBMC.RunPlugin({})'.format(get_url(action = "del_record", id = d["id"])))])
             xbmcplugin.addDirectoryItem(_handle, url, list_item, False)
@@ -203,6 +203,16 @@ def list_videos(day,id, icon):
     xbmcplugin.endOfDirectory(_handle)
 
 
+def play_records(eventid):
+    html = urlopen("https://sledovanitv.cz:443/api/record-timeshift?format=m3u8&" + lq[addon.getSetting("quality")] + "&recordId=" + eventid + "&PHPSESSID=" + SESSID).read()
+    data = json.loads(html)
+    if data["status"] == 1:
+        listitem = xbmcgui.ListItem(path=data["url"])
+        xbmcplugin.setResolvedUrl(_handle, True, listitem)
+    else:
+        xbmcgui.Dialog().notification("Archiv SledovaniTV","Nedostupné", xbmcgui.NOTIFICATION_INFO, 3000)
+
+
 def play_video(eventid):
     html = urlopen("https://sledovanitv.cz:443/api/event-timeshift?format=m3u8&" + lq[addon.getSetting("quality")] + "&eventId=" + eventid + "&PHPSESSID=" + SESSID).read()
     data = json.loads(html)
@@ -229,6 +239,8 @@ def router(paramstring):
             list_videos(params['day'], params['id'], params['icon'])
         elif params['action'] == 'play':
             play_video(params["eventid"])
+        elif params['action'] == 'play_record':
+            play_records(params["eventid"])
         elif params['action'] == 'add_recording':
             html = urlopen("https://sledovanitv.cz:443/api/record-event?eventId=" + params["eventid"] + "&PHPSESSID=" + SESSID).read()
             data = json.loads(html)

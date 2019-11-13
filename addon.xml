@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <addon id="plugin.video.archivsledovanitv"
-version="1.5.0"
+version="1.5.1"
 name="Archiv SledovaniTV"
 provider-name="Sároš">
   <requires>
@@ -16,7 +16,10 @@ provider-name="Sároš">
   <assets>
     <icon>icon.png</icon>
   </assets>
-  <news>v1.5.0 (2019-09-24)
+  <news>v1.5.1 (2019-11-13)
+- opraveno přehrávání uložených pořadů
+
+v1.5.0 (2019-09-24)
 - přidán pin (rodičovský zámek) do nastavení
 
 v1.4.1 (2019-05-23)
