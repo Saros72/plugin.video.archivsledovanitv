@@ -95,7 +95,10 @@ def list_records():
             list_item.setInfo('video', {'mediatype' : 'movie', 'title': d["title"], 'plot': d["event"]["description"]})
             url = get_url(action='play_record', eventid = d["id"])
             list_item.setProperty('IsPlayable', 'true')
-            list_item.addContextMenuItems([('Smazat pořad','XBMC.RunPlugin({})'.format(get_url(action = "del_record", id = d["id"])))])
+            if 'ruleId' in d:
+                list_item.addContextMenuItems([('Uložit seriál','XBMC.RunPlugin({})'.format(get_url(action = "add_serie", ruleid = d["ruleId"]))), ('Odebrat pořad','XBMC.RunPlugin({})'.format(get_url(action = "del_record", id = d["id"]))), ('Odebrat seriál','XBMC.RunPlugin({})'.format(get_url(action = "del_serie", ruleid = d["ruleId"])))])
+            else:
+                list_item.addContextMenuItems([('Odebrat pořad','XBMC.RunPlugin({})'.format(get_url(action = "del_record", id = d["id"])))])
             xbmcplugin.addDirectoryItem(_handle, url, list_item, False)
         xbmcplugin.endOfDirectory(_handle)
     else:
@@ -246,11 +249,23 @@ def router(paramstring):
             data = json.loads(html)
             if data["status"] == 1:
                 xbmcgui.Dialog().notification("Archiv SledovaniTV","Uloženo", xbmcgui.NOTIFICATION_INFO, 3000, sound = False)
+        elif params['action'] == 'add_serie':
+            html = urlopen("https://sledovanitv.cz:443/api/activate-rule?ruleId=" + params["ruleid"] + "&PHPSESSID=" + SESSID).read()
+            data = json.loads(html)
+            if data["status"] == 1:
+                xbmcgui.Dialog().notification("Archiv SledovaniTV","Uloženo", xbmcgui.NOTIFICATION_INFO, 3000, sound = False)
+                xbmc.executebuiltin('Container.Refresh')
         elif params['action'] == 'del_record':
             html = urlopen("https://sledovanitv.cz:443/api/delete-record?recordId=" + params["id"] + "&PHPSESSID=" + SESSID).read()
             data = json.loads(html)
             if data["status"] == 1:
-                xbmcgui.Dialog().notification("Archiv SledovaniTV","Smazáno", xbmcgui.NOTIFICATION_INFO, 3000, sound = False)
+                xbmcgui.Dialog().notification("Archiv SledovaniTV","Odebráno", xbmcgui.NOTIFICATION_INFO, 3000, sound = False)
+                xbmc.executebuiltin('Container.Refresh')
+        elif params['action'] == 'del_serie':
+            html = urlopen("https://sledovanitv.cz:443/api/delete-rule?ruleId=" + params["ruleid"] + "&PHPSESSID=" + SESSID).read()
+            data = json.loads(html)
+            if data["status"] == 1:
+                xbmcgui.Dialog().notification("Archiv SledovaniTV","Odebráno", xbmcgui.NOTIFICATION_INFO, 3000, sound = False)
                 xbmc.executebuiltin('Container.Refresh')
         else:
             raise ValueError('Invalid paramstring: {0}!'.format(paramstring))

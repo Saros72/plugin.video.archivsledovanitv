@@ -1,3 +1,6 @@
+v1.5.2 (2019-11-24)
+- kategorie uložené pořady: možnost uložit celý seriál
+
 v1.5.1 (2019-11-13)
 - opraveno přehrávání uložených pořadů
 
