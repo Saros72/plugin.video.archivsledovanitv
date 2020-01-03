@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <addon id="plugin.video.archivsledovanitv"
-version="1.5.2"
+version="1.6.0"
 name="Archiv SledovaniTV"
 provider-name="Sároš">
   <requires>
@@ -16,7 +16,11 @@ provider-name="Sároš">
   <assets>
     <icon>icon.png</icon>
   </assets>
-  <news>v1.5.2 (2019-11-24)
+  <news>v1.6.0  (2020-01-03)
+- přidáno nové device ID (XBMC) v nastavení
+- pokud dojde k odebrání zařízení, provede se nové přihlášení/párování
+
+v1.5.2 (2019-11-24)
 - kategorie uložené pořady: možnost uložit celý seriál
 
 v1.5.1 (2019-11-13)

@@ -4,6 +4,7 @@ import sys
 import xbmcgui
 import xbmcplugin
 import xbmcaddon
+import xbmc
 from urllib import urlencode, quote
 from urlparse import parse_qsl
 from urllib2 import urlopen, Request
@@ -31,13 +32,16 @@ def compare_time(t):
 days = {replace_day((datetime.now() + timedelta(days=0)).strftime("%A  %d.%m.")): (datetime.now() + timedelta(days=0)).strftime("%Y-%m-%d"), replace_day((datetime.now() + timedelta(days=-1)).strftime("%A  %d.%m.")): (datetime.now() + timedelta(days=-1)).strftime("%Y-%m-%d"), replace_day((datetime.now() + timedelta(days=-2)).strftime("%A  %d.%m.")): (datetime.now() + timedelta(days=-2)).strftime("%Y-%m-%d"), replace_day((datetime.now() + timedelta(days=-3)).strftime("%A  %d.%m.")): (datetime.now() + timedelta(days=-3)).strftime("%Y-%m-%d"), replace_day((datetime.now() + timedelta(days=-4)).strftime("%A  %d.%m.")): (datetime.now() + timedelta(days=-4)).strftime("%Y-%m-%d"), replace_day((datetime.now() + timedelta(days=-5)).strftime("%A  %d.%m.")): (datetime.now() + timedelta(days=-5)).strftime("%Y-%m-%d"), replace_day((datetime.now() + timedelta(days=-6)).strftime("%A  %d.%m.")): (datetime.now() + timedelta(days=-6)).strftime("%Y-%m-%d"), replace_day((datetime.now() + timedelta(days=-7)).strftime("%A  %d.%m.")): (datetime.now() + timedelta(days=-7)).strftime("%Y-%m-%d")}
 
 
-user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
+user_agent = xbmc.getUserAgent()
+#user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
 headers= {'User-Agent':user_agent,}
-dev_list = {"0": "androidportable", "1": "ios", "2": "samsungtv"}
+dev_list = {"0": "androidportable", "1": "ios", "2": "samsungtv", "3": "xbmc"}
 
 
 addon = xbmcaddon.Addon(id='plugin.video.archivsledovanitv')
-if addon.getSetting("id") == "":
+
+
+def pairing():
     request = Request("http://sledovanitv.cz/api/create-pairing?username=" + addon.getSetting("username") + "&password=" + addon.getSetting("password") + "&type=" + dev_list[addon.getSetting("idd")], None,headers)
     html = urlopen(request).read()
     data = json.loads(html)
@@ -49,24 +53,35 @@ if addon.getSetting("id") == "":
         sys.exit()
 
 
+if addon.getSetting("id") == "":
+    pairing()
+
+
 def getsessid():
     html = urlopen("http://sledovanitv.cz/api/device-login?deviceId=" + addon.getSetting("id") + "&password=" + addon.getSetting("passwordid") + "&version=3.2.004&lang=cs&unit=default").read()
     data = json.loads(html)
     if data["status"] == 1:
         PHPSESSID = data["PHPSESSID"]
-        if addon.getSetting("pin") != "":
-            pinunlock = urlopen("http://sledovanitv.cz/api/pin-unlock?pin=" + addon.getSetting("pin") + "&PHPSESSID=" + PHPSESSID).read()
-            data = json.loads(pinunlock)
-            if data["status"] == 0:
-                PIN = 0
-            else:
-                PIN = 1
+    else:
+        pairing()
+        html = urlopen("http://sledovanitv.cz/api/device-login?deviceId=" + addon.getSetting("id") + "&password=" + addon.getSetting("passwordid") + "&version=3.2.004&lang=cs&unit=default").read()
+        data = json.loads(html)
+        if data["status"] == 1:
+            PHPSESSID = data["PHPSESSID"]
+        else:
+            xbmcgui.Dialog().notification("Archiv SledovaniTV","Nelze se přihlásit", xbmcgui.NOTIFICATION_ERROR, 4000)
+            sys.exit()
+    if addon.getSetting("pin") != "":
+        pinunlock = urlopen("http://sledovanitv.cz/api/pin-unlock?pin=" + addon.getSetting("pin") + "&PHPSESSID=" + PHPSESSID).read()
+        data = json.loads(pinunlock)
+        if data["status"] == 0:
+            PIN = 0
         else:
             PIN = 1
-        return PHPSESSID, PIN
     else:
-        xbmcgui.Dialog().notification("Archiv SledovaniTV","Nelze se přihlásit", xbmcgui.NOTIFICATION_ERROR, 4000)
-        sys.exit()
+        PIN = 1
+    return PHPSESSID, PIN
+
 
 
 SESSID, PIN = getsessid()

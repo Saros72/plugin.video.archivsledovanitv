@@ -1,3 +1,7 @@
+v1.6.0  (2020-01-03)
+- přidáno nové device ID (XBMC) v nastavení
+- pokud dojde k odebrání zařízení, provede se nové přihlášení/párování
+
 v1.5.2 (2019-11-24)
 - kategorie uložené pořady: možnost uložit celý seriál
 
