@@ -1,3 +1,6 @@
+v1.7.0  (2020-01-04)
+- přidána MAC adresa jako identifikace zařízení (sériové číslo) při přihlášení/párování
+
 v1.6.0  (2020-01-03)
 - přidáno nové device ID (XBMC) v nastavení
 - pokud dojde k odebrání zařízení, provede se nové přihlášení/párování

@@ -9,6 +9,7 @@ from urllib import urlencode, quote
 from urlparse import parse_qsl
 from urllib2 import urlopen, Request
 import json
+import uuid
 from datetime import datetime, timedelta
 
 
@@ -35,14 +36,14 @@ days = {replace_day((datetime.now() + timedelta(days=0)).strftime("%A  %d.%m."))
 user_agent = xbmc.getUserAgent()
 #user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
 headers= {'User-Agent':user_agent,}
-dev_list = {"0": "androidportable", "1": "ios", "2": "samsungtv", "3": "xbmc"}
-
-
+dev_list = {"0": "androidportable", "1": "ios", "2": "xbmc"}
 addon = xbmcaddon.Addon(id='plugin.video.archivsledovanitv')
 
 
 def pairing():
-    request = Request("http://sledovanitv.cz/api/create-pairing?username=" + addon.getSetting("username") + "&password=" + addon.getSetting("password") + "&type=" + dev_list[addon.getSetting("idd")], None,headers)
+    mac_num = hex(uuid.getnode()).replace('0x', '').upper()
+    mac = ':'.join(mac_num[i : i + 2] for i in range(0, 11, 2))
+    request = Request("https://sledovanitv.cz/api/create-pairing?username=" + addon.getSetting("username") + "&password=" + addon.getSetting("password") + "&type=" + dev_list[addon.getSetting("idd")] + "&product=KODI&serial=" + mac, None,headers)
     html = urlopen(request).read()
     data = json.loads(html)
     if data["status"] == 1:
@@ -58,13 +59,13 @@ if addon.getSetting("id") == "":
 
 
 def getsessid():
-    html = urlopen("http://sledovanitv.cz/api/device-login?deviceId=" + addon.getSetting("id") + "&password=" + addon.getSetting("passwordid") + "&version=3.2.004&lang=cs&unit=default").read()
+    html = urlopen("https://sledovanitv.cz/api/device-login?deviceId=" + addon.getSetting("id") + "&password=" + addon.getSetting("passwordid") + "&version=3.2.004&lang=cs&unit=default").read()
     data = json.loads(html)
     if data["status"] == 1:
         PHPSESSID = data["PHPSESSID"]
     else:
         pairing()
-        html = urlopen("http://sledovanitv.cz/api/device-login?deviceId=" + addon.getSetting("id") + "&password=" + addon.getSetting("passwordid") + "&version=3.2.004&lang=cs&unit=default").read()
+        html = urlopen("https://sledovanitv.cz/api/device-login?deviceId=" + addon.getSetting("id") + "&password=" + addon.getSetting("passwordid") + "&version=3.2.004&lang=cs&unit=default").read()
         data = json.loads(html)
         if data["status"] == 1:
             PHPSESSID = data["PHPSESSID"]
@@ -72,7 +73,7 @@ def getsessid():
             xbmcgui.Dialog().notification("Archiv SledovaniTV","Nelze se přihlásit", xbmcgui.NOTIFICATION_ERROR, 4000)
             sys.exit()
     if addon.getSetting("pin") != "":
-        pinunlock = urlopen("http://sledovanitv.cz/api/pin-unlock?pin=" + addon.getSetting("pin") + "&PHPSESSID=" + PHPSESSID).read()
+        pinunlock = urlopen("https://sledovanitv.cz/api/pin-unlock?pin=" + addon.getSetting("pin") + "&PHPSESSID=" + PHPSESSID).read()
         data = json.loads(pinunlock)
         if data["status"] == 0:
             PIN = 0
