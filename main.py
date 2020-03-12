@@ -36,14 +36,28 @@ days = {replace_day((datetime.now() + timedelta(days=0)).strftime("%A  %d.%m."))
 user_agent = xbmc.getUserAgent()
 #user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
 headers= {'User-Agent':user_agent,}
-dev_list = {"0": "androidportable", "1": "ios", "2": "xbmc"}
+product_list = {"0": "Xiaomi%3ARedmi+Note+7", "1": "iPhone%3A8+Plus"}
+dev_list = {"0": "androidportable", "1": "ios"}
 addon = xbmcaddon.Addon(id='plugin.video.archivsledovanitv')
+
+
+def unpair():
+    if addon.getSetting("id") != "":
+        try:
+            request = Request("https://sledovanitv.cz/api/delete-pairing/?deviceId=" + addon.getSetting("id") + "&password=" + addon.getSetting("passwordid") + "&unit=default", None,headers)
+            html = urlopen(request).read()
+        except:
+            xbmcgui.Dialog().notification("Archiv SledovaniTV","Nelze provést", xbmcgui.NOTIFICATION_ERROR, 4000)
+        addon.setSetting(id='id', value= "")
+        addon.setSetting(id='passwordid', value= "")
+    else:
+        xbmcgui.Dialog().notification("Archiv SledovaniTV","Nelze provést", xbmcgui.NOTIFICATION_ERROR, 4000)
 
 
 def pairing():
     mac_num = hex(uuid.getnode()).replace('0x', '').upper()
     mac = ':'.join(mac_num[i : i + 2] for i in range(0, 11, 2))
-    request = Request("https://sledovanitv.cz/api/create-pairing?username=" + addon.getSetting("username") + "&password=" + addon.getSetting("password") + "&type=" + dev_list[addon.getSetting("idd")] + "&product=KODI&serial=" + mac, None,headers)
+    request = Request("https://sledovanitv.cz/api/create-pairing?username=" + addon.getSetting("username") + "&password=" + addon.getSetting("password") + "&type=" + dev_list[addon.getSetting("idd")] + "&product=" + product_list[addon.getSetting("idd")] + "&serial=" + mac, None,headers)
     html = urlopen(request).read()
     data = json.loads(html)
     if data["status"] == 1:
@@ -52,10 +66,6 @@ def pairing():
     else:
         xbmcgui.Dialog().notification("Archiv SledovaniTV","Nelze se přihlásit", xbmcgui.NOTIFICATION_ERROR, 4000)
         sys.exit()
-
-
-if addon.getSetting("id") == "":
-    pairing()
 
 
 def getsessid():
@@ -84,7 +94,8 @@ def getsessid():
     return PHPSESSID, PIN
 
 
-
+if addon.getSetting("id") == "":
+    pairing()
 SESSID, PIN = getsessid()
 lq = {"0": "quality=40&capabilities=adaptive%2Ch265", "1": "quality=40&capabilities=adaptive%2Ch264", "2": "quality=10&capabilities=adaptive%2Ch264"}
 
@@ -283,6 +294,8 @@ def router(paramstring):
             if data["status"] == 1:
                 xbmcgui.Dialog().notification("Archiv SledovaniTV","Odebráno", xbmcgui.NOTIFICATION_INFO, 3000, sound = False)
                 xbmc.executebuiltin('Container.Refresh')
+        elif params['action'] == 'un_pair':
+            unpair()
         else:
             raise ValueError('Invalid paramstring: {0}!'.format(paramstring))
     else:

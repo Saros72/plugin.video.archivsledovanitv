@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <addon id="plugin.video.archivsledovanitv"
-version="1.7.0"
+version="1.7.1"
 name="Archiv SledovaniTV"
 provider-name="Sároš">
   <requires>
@@ -16,7 +16,11 @@ provider-name="Sároš">
   <assets>
     <icon>icon.png</icon>
   </assets>
-  <news>v1.7.0  (2020-01-04)
+  <news>v1.7.1 (2020-03-12)
+- odebrána identifikace zařízení jako "Kodi"
+- v nastavení možnost zrušit párování (odebrat zařízení)
+
+v1.7.0  (2020-01-04)
 - přidána MAC adresa jako identifikace zařízení (sériové číslo) při přihlášení/párování
 
 v1.6.0  (2020-01-03)
