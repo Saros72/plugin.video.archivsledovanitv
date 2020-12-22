@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <addon id="plugin.video.archivsledovanitv"
-version="1.7.1"
+version="1.7.2"
 name="Archiv SledovaniTV"
 provider-name="Sároš">
   <requires>
@@ -11,12 +11,19 @@ provider-name="Sároš">
 	</extension>
 	<extension point="xbmc.addon.metadata">
   <summary lang="cs">Archiv SledovaniTV</summary>
+  <summary lang="sk">Archív SledovanieTV</summary>
+  <summary lang="cs">SledovaniTV Archive</summary>
   <description lang="cs">Až 7 dní zpětného sledování televizních pořadů ze serveru SledováníTV (placená služba)</description>
+  <description lang="sk">Až 7 dní spätného sledovania televíznych relácií zo servera SledovanieTV (platená služba)</description>
+  <description lang="en">Archive of TV shows with 7 day history, provided by SledovanieTV service (plan required)</description>
   <disclaimer lang="cs">Sároš</disclaimer>
   <assets>
     <icon>icon.png</icon>
   </assets>
-  <news>v1.7.1 (2020-03-12)
+  <news>v1.7.2 (2020-12-22)
+- @jose1711 přidána podpora pro angličtinu a slovenštinu (kromě nastavení)
+
+v1.7.1 (2020-03-12)
 - odebrána identifikace zařízení jako "Kodi"
 - v nastavení možnost zrušit párování (odebrat zařízení)
 

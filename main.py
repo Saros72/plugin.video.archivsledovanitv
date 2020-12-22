@@ -15,6 +15,8 @@ from datetime import datetime, timedelta
 
 _url = sys.argv[0]
 _handle = int(sys.argv[1])
+_addon_ = xbmcaddon.Addon('plugin.video.archivsledovanitv')
+_lang_ = _addon_.getLocalizedString
 
 
 def replace_day(nd):
@@ -47,11 +49,11 @@ def unpair():
             request = Request("https://sledovanitv.cz/api/delete-pairing/?deviceId=" + addon.getSetting("id") + "&password=" + addon.getSetting("passwordid") + "&unit=default", None,headers)
             html = urlopen(request).read()
         except:
-            xbmcgui.Dialog().notification("Archiv SledovaniTV","Nelze provést", xbmcgui.NOTIFICATION_ERROR, 4000)
+            xbmcgui.Dialog().notification("Archiv SledovaniTV", _lang_(30006), xbmcgui.NOTIFICATION_ERROR, 4000)
         addon.setSetting(id='id', value= "")
         addon.setSetting(id='passwordid', value= "")
     else:
-        xbmcgui.Dialog().notification("Archiv SledovaniTV","Nelze provést", xbmcgui.NOTIFICATION_ERROR, 4000)
+        xbmcgui.Dialog().notification("Archiv SledovaniTV", _lang_(30006), xbmcgui.NOTIFICATION_ERROR, 4000)
 
 
 def pairing():
@@ -64,7 +66,7 @@ def pairing():
         addon.setSetting(id='id', value=str(data["deviceId"]))
         addon.setSetting(id='passwordid', value=str(data["password"]))
     else:
-        xbmcgui.Dialog().notification("Archiv SledovaniTV","Nelze se přihlásit", xbmcgui.NOTIFICATION_ERROR, 4000)
+        xbmcgui.Dialog().notification("Archiv SledovaniTV",_lang_(30004), xbmcgui.NOTIFICATION_ERROR, 4000)
         sys.exit()
 
 
@@ -80,7 +82,7 @@ def getsessid():
         if data["status"] == 1:
             PHPSESSID = data["PHPSESSID"]
         else:
-            xbmcgui.Dialog().notification("Archiv SledovaniTV","Nelze se přihlásit", xbmcgui.NOTIFICATION_ERROR, 4000)
+            xbmcgui.Dialog().notification("Archiv SledovaniTV",_lang_(30004), xbmcgui.NOTIFICATION_ERROR, 4000)
             sys.exit()
     if addon.getSetting("pin") != "":
         pinunlock = urlopen("https://sledovanitv.cz/api/pin-unlock?pin=" + addon.getSetting("pin") + "&PHPSESSID=" + PHPSESSID).read()
@@ -109,7 +111,7 @@ def list_records():
     data = json.loads(html)
     if data["status"] == 1:
         if data["records"] == []:
-            xbmcgui.Dialog().notification("Archiv SledovaniTV","Žádné uložené pořady", xbmcgui.NOTIFICATION_INFO, 3000)
+            xbmcgui.Dialog().notification("Archiv SledovaniTV",_lang_(30005), xbmcgui.NOTIFICATION_INFO, 3000)
             return
         xbmcplugin.setContent(_handle, 'videos')
         for d in data["records"]:
@@ -123,17 +125,17 @@ def list_records():
             url = get_url(action='play_record', eventid = d["id"])
             list_item.setProperty('IsPlayable', 'true')
             if 'ruleId' in d:
-                list_item.addContextMenuItems([('Uložit seriál','XBMC.RunPlugin({})'.format(get_url(action = "add_serie", ruleid = d["ruleId"]))), ('Odebrat pořad','XBMC.RunPlugin({})'.format(get_url(action = "del_record", id = d["id"]))), ('Odebrat seriál','XBMC.RunPlugin({})'.format(get_url(action = "del_serie", ruleid = d["ruleId"])))])
+                list_item.addContextMenuItems([(_lang_(30008),'XBMC.RunPlugin({})'.format(get_url(action = "add_serie", ruleid = d["ruleId"]))), (_lang_(30009),'XBMC.RunPlugin({})'.format(get_url(action = "del_record", id = d["id"]))), (_lang_(30010),'XBMC.RunPlugin({})'.format(get_url(action = "del_serie", ruleid = d["ruleId"])))])
             else:
-                list_item.addContextMenuItems([('Odebrat pořad','XBMC.RunPlugin({})'.format(get_url(action = "del_record", id = d["id"])))])
+                list_item.addContextMenuItems([(_lang_(30009),'XBMC.RunPlugin({})'.format(get_url(action = "del_record", id = d["id"])))])
             xbmcplugin.addDirectoryItem(_handle, url, list_item, False)
         xbmcplugin.endOfDirectory(_handle)
     else:
-        xbmcgui.Dialog().notification("Archiv SledovaniTV","Žádné uložené pořady", xbmcgui.NOTIFICATION_INFO, 3000)
+        xbmcgui.Dialog().notification("Archiv SledovaniTV", _lang_(30005), xbmcgui.NOTIFICATION_INFO, 3000)
 
 
 def list_search():
-    kb = xbmc.Keyboard('', 'Zadejte název pořadu')
+    kb = xbmc.Keyboard('', _lang_(30007))
     kb.doModal()
     if not kb.isConfirmed(): 
         return
@@ -160,13 +162,13 @@ def list_search():
                 list_item.setInfo('video', {'mediatype' : 'movie', 'title': d[0], 'plot': d[3]})
                 url = get_url(action='play', eventid = d[1])
                 list_item.setProperty('IsPlayable', 'true')
-                list_item.addContextMenuItems([('Uložit pořad','XBMC.RunPlugin({})'.format(get_url(action = "add_recording", eventid = d[1])))])
+                list_item.addContextMenuItems([(_lang_(30009),'XBMC.RunPlugin({})'.format(get_url(action = "add_recording", eventid = d[1])))])
                 xbmcplugin.addDirectoryItem(_handle, url, list_item, False)
             xbmcplugin.endOfDirectory(_handle)
         else:
-            xbmcgui.Dialog().notification("Archiv SledovaniTV","Nenalezeno", xbmcgui.NOTIFICATION_INFO, 3000)
+            xbmcgui.Dialog().notification("Archiv SledovaniTV", _lang_(30012), xbmcgui.NOTIFICATION_INFO, 3000)
     else:
-        xbmcgui.Dialog().notification("Archiv SledovaniTV","Nenalezeno", xbmcgui.NOTIFICATION_INFO, 3000)
+        xbmcgui.Dialog().notification("Archiv SledovaniTV", _lang_(30012), xbmcgui.NOTIFICATION_INFO, 3000)
 
 
 
@@ -190,7 +192,7 @@ def list_channels():
 
 
 def list_menu():
-    name_list = [("TV archiv", "DefaultAddonPVRClient.png", "0"), ("Uložené pořady", "DefaultVideoPlaylists.png", "1"), ("Hledat pořad", "DefaultAddonsSearch.png", "2")]
+    name_list = [(_lang_(30000), "DefaultAddonPVRClient.png", "0"), (_lang_(30001), "DefaultVideoPlaylists.png", "1"), (_lang_(30002), "DefaultAddonsSearch.png", "2")]
     for category in name_list:
         list_item = xbmcgui.ListItem(label=category[0])
         list_item.setArt({'thumb':category[1] , 'icon': category[1]})
@@ -227,7 +229,7 @@ def list_videos(day,id, icon):
         list_item.setProperty('IsPlayable', 'true')
         url = get_url(action='play', eventid = d[1])
         list_item.setProperty('IsPlayable', 'true')
-        list_item.addContextMenuItems([('Uložit pořad','XBMC.RunPlugin({})'.format(get_url(action = "add_recording", eventid = d[1])))])
+        list_item.addContextMenuItems([(_lang_(30003),'XBMC.RunPlugin({})'.format(get_url(action = "add_recording", eventid = d[1])))])
         xbmcplugin.addDirectoryItem(_handle, url, list_item, False)
 #        xbmcplugin.addSortMethod(_handle, xbmcplugin.SORT_METHOD_LABEL_IGNORE_THE)
     xbmcplugin.endOfDirectory(_handle)
@@ -240,7 +242,7 @@ def play_records(eventid):
         listitem = xbmcgui.ListItem(path=data["url"])
         xbmcplugin.setResolvedUrl(_handle, True, listitem)
     else:
-        xbmcgui.Dialog().notification("Archiv SledovaniTV","Nedostupné", xbmcgui.NOTIFICATION_INFO, 3000)
+        xbmcgui.Dialog().notification("Archiv SledovaniTV", _lang_(30013), xbmcgui.NOTIFICATION_INFO, 3000)
 
 
 def play_video(eventid):
@@ -250,7 +252,7 @@ def play_video(eventid):
         listitem = xbmcgui.ListItem(path=data["url"])
         xbmcplugin.setResolvedUrl(_handle, True, listitem)
     else:
-        xbmcgui.Dialog().notification("Archiv SledovaniTV","Nedostupné", xbmcgui.NOTIFICATION_INFO, 3000)
+        xbmcgui.Dialog().notification("Archiv SledovaniTV", _lang_(30013), xbmcgui.NOTIFICATION_INFO, 3000)
 
 
 def router(paramstring):
@@ -275,24 +277,24 @@ def router(paramstring):
             html = urlopen("https://sledovanitv.cz:443/api/record-event?eventId=" + params["eventid"] + "&PHPSESSID=" + SESSID).read()
             data = json.loads(html)
             if data["status"] == 1:
-                xbmcgui.Dialog().notification("Archiv SledovaniTV","Uloženo", xbmcgui.NOTIFICATION_INFO, 3000, sound = False)
+                xbmcgui.Dialog().notification("Archiv SledovaniTV", _lang_(30014), xbmcgui.NOTIFICATION_INFO, 3000, sound = False)
         elif params['action'] == 'add_serie':
             html = urlopen("https://sledovanitv.cz:443/api/activate-rule?ruleId=" + params["ruleid"] + "&PHPSESSID=" + SESSID).read()
             data = json.loads(html)
             if data["status"] == 1:
-                xbmcgui.Dialog().notification("Archiv SledovaniTV","Uloženo", xbmcgui.NOTIFICATION_INFO, 3000, sound = False)
+                xbmcgui.Dialog().notification("Archiv SledovaniTV", _lang_(30014), xbmcgui.NOTIFICATION_INFO, 3000, sound = False)
                 xbmc.executebuiltin('Container.Refresh')
         elif params['action'] == 'del_record':
             html = urlopen("https://sledovanitv.cz:443/api/delete-record?recordId=" + params["id"] + "&PHPSESSID=" + SESSID).read()
             data = json.loads(html)
             if data["status"] == 1:
-                xbmcgui.Dialog().notification("Archiv SledovaniTV","Odebráno", xbmcgui.NOTIFICATION_INFO, 3000, sound = False)
+                xbmcgui.Dialog().notification("Archiv SledovaniTV", _lang_(30015), xbmcgui.NOTIFICATION_INFO, 3000, sound = False)
                 xbmc.executebuiltin('Container.Refresh')
         elif params['action'] == 'del_serie':
             html = urlopen("https://sledovanitv.cz:443/api/delete-rule?ruleId=" + params["ruleid"] + "&PHPSESSID=" + SESSID).read()
             data = json.loads(html)
             if data["status"] == 1:
-                xbmcgui.Dialog().notification("Archiv SledovaniTV","Odebráno", xbmcgui.NOTIFICATION_INFO, 3000, sound = False)
+                xbmcgui.Dialog().notification("Archiv SledovaniTV", _lang_(30015), xbmcgui.NOTIFICATION_INFO, 3000, sound = False)
                 xbmc.executebuiltin('Container.Refresh')
         elif params['action'] == 'un_pair':
             unpair()
@@ -300,7 +302,7 @@ def router(paramstring):
             raise ValueError('Invalid paramstring: {0}!'.format(paramstring))
     else:
         if PIN == 0:
-            xbmcgui.Dialog().notification("Archiv SledovaniTV","Nesprávný pin", xbmcgui.NOTIFICATION_ERROR, 3000, sound = False)
+            xbmcgui.Dialog().notification("Archiv SledovaniTV", _lang_(30016), xbmcgui.NOTIFICATION_ERROR, 3000, sound = False)
         list_menu()
 
 
