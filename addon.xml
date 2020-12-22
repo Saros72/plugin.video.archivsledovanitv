@@ -1,27 +1,61 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <addon id="plugin.video.archivsledovanitv"
-version="1.7.2"
+version="1.9.2"
 name="Archiv SledovaniTV"
 provider-name="Sároš">
   <requires>
-    <import addon="xbmc.python" version="2.1.0" />
+    <import addon="xbmc.python" version="2.26.0" />
+    <import addon="script.module.requests" version="2.22.0" />
   </requires>
 	<extension point="xbmc.python.pluginsource" library="main.py">
 		<provides>video</provides>
 	</extension>
 	<extension point="xbmc.addon.metadata">
   <summary lang="cs">Archiv SledovaniTV</summary>
-  <summary lang="sk">Archív SledovanieTV</summary>
-  <summary lang="cs">SledovaniTV Archive</summary>
   <description lang="cs">Až 7 dní zpětného sledování televizních pořadů ze serveru SledováníTV (placená služba)</description>
-  <description lang="sk">Až 7 dní spätného sledovania televíznych relácií zo servera SledovanieTV (platená služba)</description>
-  <description lang="en">Archive of TV shows with 7 day history, provided by SledovanieTV service (plan required)</description>
   <disclaimer lang="cs">Sároš</disclaimer>
   <assets>
     <icon>icon.png</icon>
   </assets>
-  <news>v1.7.2 (2020-12-22)
-- @jose1711 přidána podpora pro angličtinu a slovenštinu (kromě nastavení)
+  <news>v1.9.2 (2020-12-22)
+- zobrazení pouze dostupných pořadů v kategorii TV tipy
+- opraveno zobrazení titulků (pouze přes InputStream Adaptive)
+
+v1.9.1 (2020-11-29)
+- optimalizace vyhledávání (historie)
+
+v1.9.0 (2020-11-28)
+- historie sledování
+- podpora titulků (pokud jsou k dispozici)
+- zobrazení datumu a času pořadu v přehrávači
+- optimalizace
+
+v1.8.9 (2020-11-23)
+- optimalizace
+
+v1.8.8 (2020-11-11)
+- možnost použít InputStream Adaptive u živého vysílání
+
+v1.8.7 (2020-11-02)
+- přidána funkce historie vyhledávání
+
+v1.8.6 (2020-10-29)
+- možnost přehrát živé vysílání (z kontextového menu)
+
+v1.8.5 (2020-09-27)
+- opraveno stahování
+
+v1.8.4 (2020-09-27)
+- nově TV tipy
+
+v1.8.3 (2020-09-08)
+- plakáty a pozadí u pořadů
+
+v1.8.2 (2020-09-06)
+- dialog stahování na pozadí (volitelně)
+
+v1.8.0 (2020-07-10)
+- možnost stáhnout video z Archivu (MPEG-2 Transport Stream)
 
 v1.7.1 (2020-03-12)
 - odebrána identifikace zařízení jako "Kodi"
