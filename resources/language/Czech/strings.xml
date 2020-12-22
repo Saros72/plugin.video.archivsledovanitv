@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+  <string id="30000">TV archiv</string>
+  <string id="30001">Uložené pořady</string>
+  <string id="30002">Hledat pořad</string>
+  <string id="30003">Uložit pořad</string>
+  <string id="30004">Nelze se přihlásit</string>
+  <string id="30005">Žádné uložené pořady</string>
+  <string id="30006">Nelze provést</string>
+  <string id="30007">Zadejte název pořadu</string>
+  <string id="30008">Uložit seriál</string>
+  <string id="30009">Uložit pořad</string>
+  <string id="30010">Odebrat pořad</string>
+  <string id="30011">Odebrat seriál</string>
+  <string id="30012">Nenalezeno</string>
+  <string id="30013">Nedostupné</string>
+  <string id="30014">Uloženo</string>
+  <string id="30015">Odebráno</string>
+  <string id="30016">Nesprávný pin</string>
+</strings>
