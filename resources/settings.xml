@@ -14,5 +14,16 @@
     <setting label="Kvalita videa" id="quality" type="enum" values="HD  H.265|HD  H.264|SD  H.264" default="0"/>
     <setting label="Loga kanálů" id="logo" type="enum" values="Barevná|Bílá" default="0"/>
    <setting label="Řazení pořadů" id="sorting" type="enum" values="Nejnovější|Nejstarší" default="0"/>
-	</category>
+    <setting type="sep" />
+    <setting type="lsep" label="Stahování" />
+    <setting label="Složka" type="folder" id="download_folder" default =""/>
+    <setting label="Začátek (+ minut)" type="slider" id="start_min" default="0" range="0,1,20" option="int" />
+    <setting label="Konec (- minut)" type="slider" id="end_min" default="0" range="0,1,20" option="int" />
+    <setting id="dialog" type="bool" label="Dialog stahování na pozadí" default="true" />
+    <setting type="sep" />
+    <setting id="inputstream" type="bool" label="InputStream Adaptive" default="false" />
+  </category>
+  <category label="Donate">
+    <setting id="paypal" type="action" label="PayPal" option="close" action="RunScript(special://home/addons/plugin.video.archivsledovanitv/donate.py)" />
+  </category>
 </settings>
