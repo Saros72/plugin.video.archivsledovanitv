@@ -123,6 +123,13 @@ def available_time(string_time):
         return False
 
 
+def sec_to_hours(seconds):
+    h = seconds // 3600
+    m = seconds % 3600 // 60
+    s = seconds % 3600 % 60
+    return "%02d:%02d" % (h, m)
+
+
 def list_tv_tips(id):
     html = urlopen('https://sledovanitv.cz/api/show-category?category=box-homescreen&detail=events%2Csubcategories&eventCount=1&PHPSESSID=' + SESSID).read()
     data = json.loads(html)
@@ -134,7 +141,7 @@ def list_tv_tips(id):
                     if d["events"][0]["availability"] == "timeshift" and available_time(d["events"][0]["startTime"]) == True:
                         list_item = xbmcgui.ListItem(label=d["events"][0]["startTime"][8:10] + "." + d["events"][0]["startTime"][5:7] + ".  " + d["events"][0]["startTime"][-8:-3] + " - " + d["events"][0]["endTime"][-8:-3] + "    [B]" + d["title"] + "[/B]")
                         list_item.setArt({'thumb': d["poster"], 'icon': d["poster"], 'fanart': d["backdrop"]})
-                        list_item.setInfo('video', {'mediatype' : 'movie', 'title': d["title"], 'plot': d["description"], "studio": d["events"][0]["startTime"][8:10] + "." + d["events"][0]["startTime"][5:7] + ".  " + d["events"][0]["startTime"][-8:-3] + " - " + d["events"][0]["endTime"][-8:-3], 'originaltitle': d["title"], 'plotoutline': d["events"][0]["channel"], 'year': d['subtitle']})
+                        list_item.setInfo('video', {'mediatype' : 'movie', 'title': d["title"], 'plot': d["description"], "studio": d["events"][0]["startTime"][8:10] + "." + d["events"][0]["startTime"][5:7] + ".  " + d["events"][0]["startTime"][-8:-3] + " - " + d["events"][0]["endTime"][-8:-3], 'originaltitle': d["title"], 'plotoutline': d["events"][0]["channel"], 'year': d['subtitle'], "duration": d["events"][0]["duration"]})
                         url = get_url(action='play', eventid = d["events"][0]["eventId"])
                         list_item.addContextMenuItems([('Uložit pořad','XBMC.RunPlugin({})'.format(get_url(action = "add_recording", eventid = d["events"][0]["eventId"])))])
                         list_item.setProperty('IsPlayable', 'true')
@@ -162,6 +169,10 @@ def list_records():
             xbmcgui.Dialog().notification("Archiv SledovaniTV","Žádné uložené pořady", xbmcgui.NOTIFICATION_INFO, 3000)
             return
         xbmcplugin.setContent(_handle, 'videos')
+        try:
+            save_records = "Uloženo: " + sec_to_hours(data["summary"]["recordedDuration"]) + "/" + sec_to_hours(data["summary"]["availableDuration"]) + " hodin"
+        except:
+            save_records = ""
         for d in data["records"]:
             list_item = xbmcgui.ListItem(label=d["event"]["startTime"][8:10] + "." + d["event"]["startTime"][5:7] + ".  " + d["event"]["startTime"][-5:] + " - " + d["event"]["endTime"][-5:] + "    [B]" + d["title"] + "[/B]")
             if addon.getSetting("logo") == "0":
@@ -169,7 +180,7 @@ def list_records():
             else:
                 logo = "https://sledovanitv.cz/cache/biglogos/" + d["channel"] + "-white.png"
             list_item.setArt({'thumb':d["event"]['poster'] , 'icon': logo, 'fanart': d["event"]['backdrop']})
-            list_item.setInfo('video', {'mediatype' : 'movie', 'title': d["title"], 'plot': d["event"]["description"], "studio": d["event"]["startTime"][8:10] + "." + d["event"]["startTime"][5:7] + ".  " + d["event"]["startTime"][-5:] + " - " + d["event"]["endTime"][-5:], 'originaltitle': d["title"]})
+            list_item.setInfo('video', {'mediatype' : 'movie', 'title': d["title"], 'plot': d["event"]["description"], "studio": d["event"]["startTime"][8:10] + "." + d["event"]["startTime"][5:7] + ".  " + d["event"]["startTime"][-5:] + " - " + d["event"]["endTime"][-5:], 'originaltitle': d["title"], 'plotoutline': save_records, "duration": d["eventDuration"]})
             url = get_url(action='play_record', eventid = d["id"])
             list_item.setProperty('IsPlayable', 'true')
             if 'ruleId' in d:
@@ -196,13 +207,13 @@ def search(query):
                              logo = "https://sledovanitv.cz/cache/biglogos/" + d["channel"] + ".png"
                         else:
                             logo = "https://sledovanitv.cz/cache/biglogos/" + d["channel"] + "-white.png"
-                        name_list.append((d["startTime"][8:10] + "." + d["startTime"][5:7] + ".  " + d["startTime"][-5:] + " - " + d["endTime"][-5:] + "    [B]" + d["title"] + "[/B]", d["eventId"], logo, d["description"], d["backdrop"], d["poster"], d["title"], d["startTime"][8:10] + "." + d["startTime"][5:7] + ".  " + d["startTime"][-5:] + " - " + d["endTime"][-5:]))
+                        name_list.append((d["startTime"][8:10] + "." + d["startTime"][5:7] + ".  " + d["startTime"][-5:] + " - " + d["endTime"][-5:] + "    [B]" + d["title"] + "[/B]", d["eventId"], logo, d["description"], d["backdrop"], d["poster"], d["title"], d["startTime"][8:10] + "." + d["startTime"][5:7] + ".  " + d["startTime"][-5:] + " - " + d["endTime"][-5:], d["duration"]))
                         if addon.getSetting("sorting") == "0":
                             name_list.sort(reverse=True)
             for d in name_list:
                 list_item = xbmcgui.ListItem(label=d[0])
                 list_item.setArt({'thumb': d[5], 'icon': d[2], 'fanart': d[4]})
-                list_item.setInfo('video', {'mediatype' : 'movie', 'title': d[6], 'plot': d[3], "studio": d[7], 'originaltitle': d[6]})
+                list_item.setInfo('video', {'mediatype' : 'movie', 'title': d[6], 'plot': d[3], "studio": d[7], 'originaltitle': d[6], "duration": d[8]*60})
                 url = get_url(action='play', eventid = d[1])
                 list_item.setProperty('IsPlayable', 'true')
                 list_item.addContextMenuItems([('Uložit pořad','XBMC.RunPlugin({})'.format(get_url(action = "add_recording", eventid = d[1]))), ('Stáhnout','XBMC.RunPlugin({})'.format(get_url(action = "downloading", name = d[0].replace("[B]", "").replace("[/B]", ""), eventid = d[1])))])
@@ -293,9 +304,13 @@ def history():
         filehandle.close()
         name_list.reverse()
         for d in name_list:
+            try:
+                duration = d["duration"]
+            except:
+                duration = ""
             list_item = xbmcgui.ListItem(label=d["title"])
             list_item.setArt({'thumb': d['thumb'], 'fanart': d['fanart']})
-            list_item.setInfo('video', {'mediatype' : 'movie', 'title': d["originaltitle"], 'plot': d['plot'], "studio": d["studio"], "originaltitle": d["originaltitle"]})
+            list_item.setInfo('video', {'mediatype' : 'movie', 'title': d["originaltitle"], 'plot': d['plot'], "studio": d["studio"], "originaltitle": d["originaltitle"], "duration": duration})
             list_item.setProperty('IsPlayable', 'true')
             url = get_url(action='play', eventid = d['eventid'])
             xbmcplugin.addDirectoryItem(_handle, url, list_item, False)
@@ -312,13 +327,13 @@ def list_videos(day,id, icon):
     for d in data:
         if d["availability"] == "timeshift":
             if compare_time(d["startTime"]) == True:
-                name_list.append((d["startTime"][-5:] + " - " + d["endTime"][-5:] + "    [B]" + d["title"] + "[/B]", d["eventId"], d["description"], d["backdrop"], d["poster"], d["title"], d["startTime"][8:10] + "." + d["startTime"][5:7] + ".  " + d["startTime"][-5:] + " - " + d["endTime"][-5:]))
+                name_list.append((d["startTime"][-5:] + " - " + d["endTime"][-5:] + "    [B]" + d["title"] + "[/B]", d["eventId"], d["description"], d["backdrop"], d["poster"], d["title"], d["startTime"][8:10] + "." + d["startTime"][5:7] + ".  " + d["startTime"][-5:] + " - " + d["endTime"][-5:], d["duration"]))
     if addon.getSetting("sorting") == "0":
         name_list.sort(reverse=True)
     for d in name_list:
         list_item = xbmcgui.ListItem(label=d[0])
         list_item.setArt({'thumb': d[4], 'icon': icon, 'fanart': d[3]})
-        list_item.setInfo('video', {'mediatype' : 'movie', 'title': d[5], 'plot': d[2], "studio": d[6], "originaltitle": d[5]})
+        list_item.setInfo('video', {'mediatype' : 'movie', 'title': d[5], 'plot': d[2], "studio": d[6], "originaltitle": d[5], "duration": d[7]*60})
         list_item.setProperty('IsPlayable', 'true')
         url = get_url(action='play', eventid = d[1])
         list_item.addContextMenuItems([('Uložit pořad','XBMC.RunPlugin({})'.format(get_url(action = "add_recording", eventid = d[1]))), ('Stáhnout','XBMC.RunPlugin({})'.format(get_url(action = "downloading", name = d[0].replace("[B]", "").replace("[/B]", ""), eventid = d[1])))])
@@ -408,6 +423,12 @@ def play_video(eventid):
         studio = xbmc.getInfoLabel("ListItem.Studio")
         thumb = xbmc.getInfoLabel('ListItem.Art(thumb)')
         fanart = xbmc.getInfoLabel('ListItem.Art(fanart)')
+        try:
+            duration = xbmc.getInfoLabel('ListItem.Duration(hh:mm:ss)')
+            h,m,s = duration.split(':')
+            duration = int(timedelta(hours=int(h),minutes=int(m),seconds=int(s)).total_seconds())
+        except:
+            duration = ""
         if os.path.exists(playing_path):
             filehandle = open(playing_path, 'rb')
             data_history = pickle.load(filehandle)
@@ -422,6 +443,7 @@ def play_video(eventid):
         json_history["fanart"] = fanart
         json_history["plot"] = plot
         json_history["studio"] = studio
+        json_history["duration"] = duration
         if json_history not in data_history:
             data_history.append(json_history)
         filehandle = open(playing_path, 'wb')

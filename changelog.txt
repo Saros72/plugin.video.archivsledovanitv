@@ -1,3 +1,7 @@
+v1.9.3 (2020-12-23)
+- zobrazení doby trvání pořadu
+- zobrazení využití místa uložených pořadů (informace o videu)
+
 v1.9.2 (2020-12-22)
 - zobrazení pouze dostupných pořadů v kategorii TV tipy
 - opraveno zobrazení titulků (pouze přes InputStream Adaptive)
