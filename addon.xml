@@ -4,19 +4,11 @@ version="1.12.0"
 name="Archiv SledovaniTV"
 provider-name="Sároš">
     <requires>
-        <import addon="xbmc.python" version="2.26.0" />
+        <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.requests" />
     </requires>
     <extension point="xbmc.python.pluginsource" library="main.py">
         <provides>video</provides>
-    </extension>
-    <extension point="kodi.context.item">
-        <menu id="kodi.core.main">
-            <item library="resources/lib/pvr.py">
-                <label>30126</label>
-                <visible>Window.IsVisible(tvguide)|Window.IsVisible(tvsearch)|Window.IsVisible(pvrosdguide)</visible>
-            </item>
-        </menu>
     </extension>
     <extension point="xbmc.addon.metadata">
         <summary lang="cs">Archiv SledovaniTV</summary>
