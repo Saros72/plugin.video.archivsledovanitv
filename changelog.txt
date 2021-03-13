@@ -1,3 +1,26 @@
+v1.12.0 (2020-03-11)
+- zpětné přehrávání pořadu v EPG PVR klienta
+- oprava drobných chyb
+
+v1.11.0 (2021-02-07)
+- kvalita videa rozdělená na úsporná, základní, vysoká
+- volba kodeku h.265/h.264
+- opraveno odebrání seriálu z uložených pořadů
+- možnost vymazat historii vyhledávání
+- optimalizace
+
+v1.10.2 (2021-02-03)
+- možnost stáhnout pořád i z kategorií TV tipy, uložené pořady a historie sledování
+
+v1.10.1 (2021-01-30)
+- možnost odebrat jednotlivý pořád z historie sledování
+
+v1.10.0 (2020-12-31)
+- opraveno přihlášení pokud je v hesle diakritika
+- podpora anglického a slovenského jazyka včetně api
+- možnost vygenerovat playlist s tvg-id pro 365 EPG generator
+- drobné opravy
+
 v1.9.3 (2020-12-23)
 - zobrazení doby trvání pořadu
 - zobrazení využití místa uložených pořadů (informace o videu)
