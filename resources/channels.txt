@@ -1,0 +1,273 @@
+ČT1,ct1
+ČT2,ct2
+ČT3,ct3
+Déčko,ctdecko
+ČT Sport,ct4sport
+ČT art,ctart
+ČT24,ct24
+ČT1 JM,ct1jm
+ČT1 SM,ct1sm
+Televize Seznam,Seznam
+Prima,primafamily
+Prima COOL,primacool
+Prima Love,primalove
+Prima Zoom,primazoom
+CNN Prima News,prima_news
+Prima Max,prima_max
+Paramount Network,primacomedy
+Prima Krimi,prima_krimi
+Nova,nova
+Nova Cinema,novacinema
+Nova Action,fanda
+Nova 2,smichov
+Nova Gold,telka
+Cartoon Network HD,cartoon_network_hd
+Nova Sport 1,nova_sport
+Nova Sport 2,nova_sport2
+Jednotka,stv1
+Jednotka HD,stv1hd
+Dvojka,stv2
+Dvojka HD,stv2hd
+Trojka,stv3
+Markíza International,markizaint
+TA3,ta3
+Rik,rik2
+JOJ Cinema,jojcinema
+JOJ Family,jojfamily
+JOJ Family HD,jojfamily_hd
+Óčko HD,ockoHD
+Óčko STAR HD,ocko_starHD
+Óčko EXPRES HD,ocko_expresHD
+Óčko BLACK HD,ocko_blackHD
+HBO,HBO
+HBO 2,HBO2
+HBO 3,hbo_comedy
+Cinemax 1,cinemax1
+Cinemax 2,cinemax2
+FilmBox,filmbox
+Filmbox Extra HD,FilmboxHD
+FilmBox Premium,FilmboxExtra
+FilmBox Family,FilmboxFamily
+Erox,eroxHD
+360TuneBox,360TuneBox
+Eroxxx,eroxxxHD
+DocuBox,DocuBoxHD
+FashionBox,FashionboxHD
+FightBox,FightboxHD
+Fast & Fun Box,Fastnfunbox
+Filmbox Arthouse,FilmboxArthouse
+Filmbox Stars,filmboxplus
+TV Barrandov,barrandov
+TV Barrandov HD,barrandov_hd
+Barrandov Krimi,barrandovplus
+Barrandov Krimi HD,barrandovplushd
+Kino Barrandov,kinobarrandov
+Kino Barrandov HD,kinobarrandovhd
+AXN,axn
+AXN Black,axnblack
+AXN White,axnwhite
+Travelxp,travelxp
+Love Nature,love_nature
+National Geographic Wild,nat_geo_wild
+National Geographic HD,NGC_HD
+Animal Planet,animal_planet
+Travel Channel HD,travelhd
+Extasy 4K,extasy_4k
+Spektrum,spektrum
+Viasat History,viasat_history
+Viasat Explore,viasat_explore
+Viasat Nature,viasat_nature
+Eurosport,Eurosport
+Eurosport2,Eurosport2
+Sport1,Sport1
+Sport2,Sport2
+Arena sport 1,slovak_sport
+Arena sport 2,slovak_sport2
+Sport 5,sport5
+Auto Motor Sport,auto_motor_sport
+TV Natura,natura
+Fishing&Hunting,fishinghunting
+TV Paprika,tv_paprika
+Golf Channel,golf
+Film Europe,Film_Europe
+Relax,pohoda
+Rebel,rebel
+Retro,retro
+CS Film,cs_film
+Cartoon Network CZ,cartoon_cz
+Cartoon Network EN,cartoon
+Boomerang,boomerang
+Film Europe + HD,Kino_CS
+Nickelodeon,Nickelodeon
+Nick JR,nickjr
+Nicktoons,nicktoons
+Disney Channel,Disney_Channel
+Jim Jam,Jim_Jam
+Life TV,TVlife
+Minimax,Minimax
+Baby TV,baby_tv
+Discovery,Discovery
+Discovery : TLC,TLC
+Discovery Science,Science
+Discovery Turbo Xtra,world
+Investigation Discovery,ID
+Crime and Investigation,sat_crime_invest
+BBC World,bbc
+History Channel,history
+CNN,cnn
+TV Noe,tvnoe
+TV5MONDE,tv5
+Film+,film_plus
+Leo TV Gold,leo_gold
+CS Mystery,kinosvet
+AMC,amc
+TV Lux,tv_lux
+Lounge TV,lounge
+Polar,Polar
+TVS,slovacko
+V1 TV,v1tv
+TV Brno 1,brno1
+TV Praha,praha
+RTM+ (Liberecko),rtm_plus_liberec
+regionalnitelevize.cz,regiotv
+Deluxe Music,deluxe
+MTV,mtv
+Šlágr TV,slagr
+Šlágr 2,slagr2
+ORF eins,orf1
+ORF zwei,orf2
+Nick JR EN,nick_jr_en
+Šlágr Premium,slagr_premium
+Sky News,sky_news
+UA TV,uatv
+France 24,france24
+France 24 (FR),france24_fr
+Russia Today,russiatoday
+Russia Today HD,russiatoday_hd
+RT Documentary,rt_doc
+CS Horror,horor_film
+Lala TV,lala_tv
+Hobby TV,hobby
+TV Mňam,mnamtv
+TV Mňau,mnau
+MTV Hits,mtv_hits
+Filmpro,filmpro
+Mezzo,mezzo
+Mezzo Live HD,mezzo_live
+NASA TV,nasatv
+NASA TV UHD,nasatv_uhd
+HaHa TV,haha_tv
+ZAK TV,zaktv
+Galerie zvířat,loop_naturetv-galerie-zvirat
+Ošetřování mláďat,loop_naturetv-osetrovani-mladat
+Krb,fireplace
+Kočičí kavárna,uscenes_cat_cafe
+Korálová zahrada,uscenes_coral_garden
+Pláž,uscenes_hammock_beach
+Noční Praha,night_prague
+Mumlavské vodopády,loop_naturetv_mumlava_waterfalls
+Čapí hnízdo,stork_nest
+Info TV Brno a jižní morava,info_tv_brno
+Regionální televize jižní Čechy,rt_jc
+RT Ústecko,rt_ustecko
+Rádio Košice,radio_kosice
+Rádia Regina Východ,radio_regina_vy
+Radio Dychovka,radio_dychovka
+SeeJay,radio_seejay
+Rádio Orlicko,radio_orlicko
+Rádio 1,radio_1
+Rádio Country,radio_country
+Kiss,radio_kiss
+Rádio Spin,radio_spin
+Signál rádio,radio_signal
+Evropa 2,radio_evropa2
+Fajn Radio,radio_fajn
+Impuls,radio_impuls
+Frekvence 1,radio_frekvence1
+NON-STOP rádio,radio_nonstop
+Černá Hora,radio_cernahora
+Rádio BEAT,radio_beat
+Krokodýl,radio_krokodyl
+ČRo Radiožurnál,radio_cro1
+ČRo Dvojka,radio_cro2
+ČRo Vltava,radio_cro3
+ČRo Plus,radio_cro6
+ČRo Radio Wave,radio_wave
+ČRo D-Dur,radio_ddur
+ČRo Jazz,radio_jazz
+Radio Dechovka,radio_dechovka
+ČRo Radio Praha,radio_praha
+ČRo Junior,radio_junior
+Rádio Slovensko,radio_slovensko
+Rádio Regina Západ,radio_regina_sk
+Rádio Devín,radio_devin
+Rádio FM,radio_fm
+Rádio Vlna,radio_vlna
+Rádio Jemné,radio_jemne
+Rádio Lumen,radio_lumen
+Rádio Anténa Rock,radio_antenarock
+Rádio Expres,radio_expres
+Rádio Best FM,radio_bestfm
+Rádio Fun,radio_fun
+Rádio Patria,radio_patria
+Fit family rádio,radio_fit_family
+Proglas,radio_proglas
+ČRo Brno,radio_brno
+ČRo České Budějovice,radio_ceskebudejovice
+Radio WOW,radio_wow_sk
+ČRo Hradec Králové,radio_hk
+ČRo Olomouc,radio_olomouc
+ČRo Ostrava,radio_ostrava
+ČRo Pardubice,radio_pardubice
+ČRo Plzeň,radio_plzen
+ČRo Region - Středočeský kraj,radio_region
+ČRo Region - Vysočina,radio_vysocina
+ČRo Sever,radio_sever
+ČRo Sever - Liberec,radio_liberec
+ČRo Regina,radio_regina
+RadioR,radior
+Rádio Blatná,radio_blatna
+Hitradio Osmdesatka,radio_hitradio_80
+Hitradio Devadesátka,radio_hitradio_90
+Hitradio Orion,radio_hitradio_orion
+Rádio Blaník,radio_blanik
+Rock Rádio,radio_rock_radio
+Óčko,ocko
+Óčko STAR,ockogold
+Óčko Expres,ocko_express
+Dorcel TV,DorceltvHD
+Dorcel XXX,DorcelHD
+Brazzers TV Europe,brazzers
+Playboy TV,playboy
+Reality Kings,realitykings
+Leo TV,leo
+X-mo,x-mo
+Private HD,privatetv
+Extasy,extasy
+PornHub TV,pornohubtv
+Redlight,redlight
+Pervij kanal,russia_channel1
+Dom Kino,dom_kino
+Dom Kino Premium,dom_kino_premium
+Vremya,vremya
+Poekhali!,poehali
+Muzika Pervogo,muzika_pervogo
+Bobyor,bobyor
+O!,telekanal_o
+Telecafe,telecafe
+Karusel,karousel
+ČT1 HD,ct1hd
+ČT2 HD,ct2hd
+Déčko HD,ctdeckohd
+ČT Sport HD,ct4sporthd
+ČT Art HD,ctarthd
+ČT24 HD,ct24hd
+Seznam HD,seznamhd
+Prima HD,primafamilyhd
+Prima COOL HD,primacoolhd
+Prima Love HD,primalovehd
+Prima Zoom HD,primazoomhd
+Prima Max HD,prima_maxhd
+Arena sport 2 HD,slovak_sport2hd
+TV Mňam HD,mnamtvhd
+TV Mňau HD,mnauhd
