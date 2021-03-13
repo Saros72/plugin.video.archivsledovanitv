@@ -1,1 +1,265 @@
+# Kodi Media Center language file
+# Addon Name: Archiv SledovaniTV
+# Addon id: plugin.video.archivsledovanitv
+# Addon Provider: Sároš
+msgid ""
+msgstr ""
 
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: cs\n"
+
+msgctxt "#30000"
+msgid "TV Archive"
+msgstr "TV archiv"
+
+msgctxt "#30001"
+msgid "TV tips"
+msgstr "TV tipy"
+
+msgctxt "#30003"
+msgid "Saved shows"
+msgstr "Uložené pořady"
+
+msgctxt "#30004"
+msgid "Search for a show"
+msgstr "Hledat pořad"
+
+msgctxt "#30005"
+msgid "History of watching"
+msgstr "Historie sledování"
+
+msgctxt "#30006"
+msgid "Clear history"
+msgstr "Vymazat historii"
+
+msgctxt "#30007"
+msgid "Play live"
+msgstr "Přehrát živé vysílání"
+
+msgctxt "#30008"
+msgid "Monday"
+msgstr "Pondělí"
+
+msgctxt "#30009"
+msgid "Tuesday"
+msgstr "Úterý"
+
+msgctxt "#30010"
+msgid "Wednesday"
+msgstr "Středa"
+
+msgctxt "#30011"
+msgid "Thursday"
+msgstr "Čtvrtek"
+
+msgctxt "#30012"
+msgid "Friday"
+msgstr "Pátek"
+
+msgctxt "#30013"
+msgid "Saturday"
+msgstr "Sobota"
+
+msgctxt "#30014"
+msgid "Sunday"
+msgstr "Neděle"
+
+msgctxt "#30015"
+msgid "Save the show"
+msgstr "Uložit pořad"
+
+msgctxt "#30016"
+msgid "Download"
+msgstr "Stáhnout"
+
+msgctxt "#30017"
+msgid "Saved"
+msgstr "Uloženo"
+
+msgctxt "#30018"
+msgid "Remove the show"
+msgstr "Odebrat pořad"
+
+msgctxt "#30019"
+msgid "Save the series"
+msgstr "Uložit seriál"
+
+msgctxt "#30020"
+msgid "Remove series"
+msgstr "Odebrat seriál"
+
+msgctxt "#30021"
+msgid "New search"
+msgstr "Nové hledání"
+
+msgctxt "#30022"
+msgid "Enter a name for the show"
+msgstr "Zadejte název pořadu"
+
+msgctxt "#30023"
+msgid "Not found"
+msgstr "Nenalezeno"
+
+msgctxt "#30024"
+msgid "Can not be done"
+msgstr "Nelze provést"
+
+msgctxt "#30025"
+msgid "Unable to login"
+msgstr "Nelze se přihlásit"
+
+msgctxt "#30026"
+msgid "No saved shows"
+msgstr "Žádné uložené pořady"
+
+msgctxt "#30027"
+msgid "Saved: "
+msgstr "Uloženo: "
+
+msgctxt "#30028"
+msgid " hours"
+msgstr " hodin"
+
+msgctxt "#30029"
+msgid "Deleted"
+msgstr "Vymazáno"
+
+msgctxt "#30030"
+msgid "Removed"
+msgstr "Odebráno"
+
+msgctxt "#30031"
+msgid "Incorrect pin"
+msgstr "Nesprávný pin"
+
+msgctxt "#30032"
+msgid "Not available"
+msgstr "Nedostupné"
+
+msgctxt "#30033"
+msgid "No watching history"
+msgstr "Žádná historie sledování"
+
+msgctxt "#30034"
+msgid "Set the download folder"
+msgstr "Nastavte složku pro stahování"
+
+msgctxt "#30035"
+msgid "Downloading: "
+msgstr "Stahování: "
+
+msgctxt "#30036"
+msgid "Done.  Play video?"
+msgstr "Hotovo. Přehrát video?"
+
+msgctxt "#30037"
+msgid "Set the playlist folder"
+msgstr "Nastavte složku pro playlist"
+
+msgctxt "#30100"
+msgid "Login"
+msgstr "Přihlášení"
+
+msgctxt "#30101"
+msgid "Password"
+msgstr "Heslo"
+
+msgctxt "#30102"
+msgid "Device identification"
+msgstr "Identifikace zařízení"
+
+msgctxt "#30103"
+msgid "Unpair (remove device)"
+msgstr "Zrušit párování (odebrat zařízení)"
+
+msgctxt "#30104"
+msgid "Video quality"
+msgstr "Kvalita videa"
+
+msgctxt "#30105"
+msgid "Channel logos"
+msgstr "Loga kanálů"
+
+msgctxt "#30106"
+msgid "Color"
+msgstr "Barevná"
+
+msgctxt "#30107"
+msgid "White"
+msgstr "Bílá"
+
+msgctxt "#30108"
+msgid "Sorting programs"
+msgstr "Řazení pořadů"
+
+msgctxt "#30109"
+msgid "Latest"
+msgstr "Nejnovější"
+
+msgctxt "#30110"
+msgid "Oldest"
+msgstr "Nejstarší"
+
+msgctxt "#30111"
+msgid "Downloading"
+msgstr "Stahování"
+
+msgctxt "#30112"
+msgid "Download folder"
+msgstr "Složka"
+
+msgctxt "#30113"
+msgid "Start (+ minutes)"
+msgstr "Začátek (+ minut)"
+
+msgctxt "#30114"
+msgid "End (- minutes)"
+msgstr "Konec (- minut)"
+
+msgctxt "#30115"
+msgid "Background download dialog"
+msgstr "Dialog stahování na pozadí"
+
+msgctxt "#30116"
+msgid "Other"
+msgstr "Ostatní"
+
+msgctxt "#30117"
+msgid "Playlist folder"
+msgstr "Složka"
+
+msgctxt "#30118"
+msgid "Generate"
+msgstr "Generovat"
+
+msgctxt "#30119"
+msgid "tvg-id for 365 EPG generator"
+msgstr "tvg-id pro 365 EPG generator"
+
+msgctxt "#30120"
+msgid "Remove"
+msgstr "Odebrat"
+
+msgctxt "#30121"
+msgid "Clear search history"
+msgstr "Vymazat historii hledání"
+
+msgctxt "#30122"
+msgid "Economical"
+msgstr "Úsporná"
+
+msgctxt "#30123"
+msgid "Basic"
+msgstr "Základní"
+
+msgctxt "#30124"
+msgid "High"
+msgstr "Vysoká"
+
+msgctxt "#30125"
+msgid "Codec"
+msgstr "Kodek"
+
+msgctxt "#30126"
+msgid "Play backwards"
+msgstr "Přehrát zpětně"
