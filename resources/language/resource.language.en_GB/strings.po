@@ -1,1 +1,265 @@
+# Kodi Media Center language file
+# Addon Name: Archiv SledovaniTV
+# Addon id: plugin.video.archivsledovanitv
+# Addon Provider: Sároš
+msgid ""
+msgstr ""
 
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en\n"
+
+msgctxt "#30000"
+msgid "TV Archive"
+msgstr ""
+
+msgctxt "#30001"
+msgid "TV tips"
+msgstr ""
+
+msgctxt "#30003"
+msgid "Saved shows"
+msgstr ""
+
+msgctxt "#30004"
+msgid "Search for a show"
+msgstr ""
+
+msgctxt "#30005"
+msgid "History of watching"
+msgstr ""
+
+msgctxt "#30006"
+msgid "Clear history"
+msgstr ""
+
+msgctxt "#30007"
+msgid "Play live"
+msgstr ""
+
+msgctxt "#30008"
+msgid "Monday"
+msgstr ""
+
+msgctxt "#30009"
+msgid "Tuesday"
+msgstr ""
+
+msgctxt "#30010"
+msgid "Wednesday"
+msgstr ""
+
+msgctxt "#30011"
+msgid "Thursday"
+msgstr ""
+
+msgctxt "#30012"
+msgid "Friday"
+msgstr ""
+
+msgctxt "#30013"
+msgid "Saturday"
+msgstr ""
+
+msgctxt "#30014"
+msgid "Sunday"
+msgstr ""
+
+msgctxt "#30015"
+msgid "Save the show"
+msgstr ""
+
+msgctxt "#30016"
+msgid "Download"
+msgstr ""
+
+msgctxt "#30017"
+msgid "Saved"
+msgstr ""
+
+msgctxt "#30018"
+msgid "Remove the show"
+msgstr ""
+
+msgctxt "#30019"
+msgid "Save the series"
+msgstr ""
+
+msgctxt "#30020"
+msgid "Remove series"
+msgstr ""
+
+msgctxt "#30021"
+msgid "New search"
+msgstr ""
+
+msgctxt "#30022"
+msgid "Enter a name for the show"
+msgstr ""
+
+msgctxt "#30023"
+msgid "Not found"
+msgstr ""
+
+msgctxt "#30024"
+msgid "Can not be done"
+msgstr ""
+
+msgctxt "#30025"
+msgid "Unable to login"
+msgstr ""
+
+msgctxt "#30026"
+msgid "No saved shows"
+msgstr ""
+
+msgctxt "#30027"
+msgid "Saved: "
+msgstr ""
+
+msgctxt "#30028"
+msgid " hours"
+msgstr ""
+
+msgctxt "#30029"
+msgid "Deleted"
+msgstr ""
+
+msgctxt "#30030"
+msgid "Removed"
+msgstr ""
+
+msgctxt "#30031"
+msgid "Incorrect pin"
+msgstr ""
+
+msgctxt "#30032"
+msgid "Not available"
+msgstr ""
+
+msgctxt "#30033"
+msgid "No watching history"
+msgstr ""
+
+msgctxt "#30034"
+msgid "Set the download folder"
+msgstr ""
+
+msgctxt "#30035"
+msgid "Downloading: "
+msgstr ""
+
+msgctxt "#30036"
+msgid "Done.  Play video?"
+msgstr ""
+
+msgctxt "#30037"
+msgid "Set the playlist folder"
+msgstr ""
+
+msgctxt "#30100"
+msgid "Login"
+msgstr ""
+
+msgctxt "#30101"
+msgid "Password"
+msgstr ""
+
+msgctxt "#30102"
+msgid "Device identification"
+msgstr ""
+
+msgctxt "#30103"
+msgid "Unpair (remove device)"
+msgstr ""
+
+msgctxt "#30104"
+msgid "Video quality"
+msgstr ""
+
+msgctxt "#30105"
+msgid "Channel logos"
+msgstr ""
+
+msgctxt "#30106"
+msgid "Color"
+msgstr ""
+
+msgctxt "#30107"
+msgid "White"
+msgstr ""
+
+msgctxt "#30108"
+msgid "Sorting programs"
+msgstr ""
+
+msgctxt "#30109"
+msgid "Latest"
+msgstr ""
+
+msgctxt "#30110"
+msgid "Oldest"
+msgstr ""
+
+msgctxt "#30111"
+msgid "Downloading"
+msgstr ""
+
+msgctxt "#30112"
+msgid "Download folder"
+msgstr ""
+
+msgctxt "#30113"
+msgid "Start (+ minutes)"
+msgstr ""
+
+msgctxt "#30114"
+msgid "End (- minutes)"
+msgstr ""
+
+msgctxt "#30115"
+msgid "Background download dialog"
+msgstr ""
+
+msgctxt "#30116"
+msgid "Other"
+msgstr ""
+
+msgctxt "#30117"
+msgid "Playlist folder"
+msgstr ""
+
+msgctxt "#30118"
+msgid "Generate"
+msgstr ""
+
+msgctxt "#30119"
+msgid "tvg-id for 365 EPG generator"
+msgstr ""
+
+msgctxt "#30120"
+msgid "Remove"
+msgstr ""
+
+msgctxt "#30121"
+msgid "Clear search history"
+msgstr ""
+
+msgctxt "#30122"
+msgid "Economical"
+msgstr ""
+
+msgctxt "#30123"
+msgid "Basic"
+msgstr ""
+
+msgctxt "#30124"
+msgid "High"
+msgstr ""
+
+msgctxt "#30125"
+msgid "Codec"
+msgstr ""
+
+msgctxt "#30126"
+msgid "Play backwards"
+msgstr ""
