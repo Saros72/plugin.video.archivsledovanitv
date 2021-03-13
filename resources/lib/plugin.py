@@ -5,9 +5,8 @@ import xbmcgui
 import xbmcplugin
 import xbmcaddon
 import xbmc
-from urllib import urlencode, quote, unquote
-from urlparse import parse_qsl, urlparse
-from urllib2 import urlopen, Request
+from urllib.parse import urlencode, quote, urlparse, parse_qsl
+from urllib.request import urlopen, Request
 import json
 import uuid
 import requests
@@ -19,8 +18,6 @@ import calendar
 from datetime import datetime, timedelta
 
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
 _url = sys.argv[0]
 _handle = int(sys.argv[1])
 user_agent = xbmc.getUserAgent()
@@ -28,7 +25,7 @@ headers= {'User-Agent':user_agent,}
 product_list = {"0": "Xiaomi%3ARedmi+Note+7", "1": "iPhone%3A8+Plus"}
 dev_list = {"0": "androidportable", "1": "ios"}
 addon = xbmcaddon.Addon(id='plugin.video.archivsledovanitv')
-profile = xbmc.translatePath(addon.getAddonInfo('profile')).decode("utf-8")
+profile = xbmc.translatePath(addon.getAddonInfo('profile')).encode().decode("utf-8")
 history_path = os.path.join(profile, "history")
 playing_path = os.path.join(profile, "history_playing")
 lng = addon.getLocalizedString
@@ -149,7 +146,7 @@ def list_tv_tips(id):
                         list_item.setArt({'thumb': d["poster"], 'icon': d["poster"], 'fanart': d["backdrop"]})
                         list_item.setInfo('video', {'mediatype' : 'movie', 'title': d["title"], 'plot': d["description"], "studio": d["events"][0]["startTime"][8:10] + "." + d["events"][0]["startTime"][5:7] + ".  " + d["events"][0]["startTime"][-8:-3] + " - " + d["events"][0]["endTime"][-8:-3], 'originaltitle': d["title"], 'plotoutline': d["events"][0]["channel"], 'year': d['subtitle'], "duration": d["events"][0]["duration"]})
                         url = get_url(action='play', eventid = d["events"][0]["eventId"])
-                        list_item.addContextMenuItems([(lng(30015),'XBMC.RunPlugin({})'.format(get_url(action = "add_recording", eventid = d["events"][0]["eventId"]))), (lng(30016),'XBMC.RunPlugin({})'.format(get_url(action = "downloading", name = d["events"][0]["startTime"][8:10] + "." + d["events"][0]["startTime"][5:7] + ".  " + d["events"][0]["startTime"][-8:-3] + " " + d["title"], eventid = d["events"][0]["eventId"], evt = "0")))])
+                        list_item.addContextMenuItems([(lng(30015),'RunPlugin({})'.format(get_url(action = "add_recording", eventid = d["events"][0]["eventId"]))), (lng(30016),'RunPlugin({})'.format(get_url(action = "downloading", name = d["events"][0]["startTime"][8:10] + "." + d["events"][0]["startTime"][5:7] + ".  " + d["events"][0]["startTime"][-8:-3] + " " + d["title"], eventid = d["events"][0]["eventId"], evt = "0")))])
                         list_item.setProperty('IsPlayable', 'true')
                         xbmcplugin.addDirectoryItem(_handle, url, list_item, False)
                 xbmcplugin.endOfDirectory(_handle)
@@ -190,9 +187,9 @@ def list_records():
             url = get_url(action='play_record', eventid = d["id"])
             list_item.setProperty('IsPlayable', 'true')
             if 'ruleId' in d:
-                list_item.addContextMenuItems([(lng(30019),'XBMC.RunPlugin({})'.format(get_url(action = "add_serie", ruleid = d["ruleId"]))), (lng(30018),'XBMC.RunPlugin({})'.format(get_url(action = "del_record", id = d["id"]))), (lng(30020),'XBMC.RunPlugin({})'.format(get_url(action = "del_serie", ruleid = d["ruleId"]))), (lng(30016),'XBMC.RunPlugin({})'.format(get_url(action = "downloading", name = d["event"]["startTime"][8:10] + "." + d["event"]["startTime"][5:7] + ".  " + d["event"]["startTime"][-5:] + " " + d["title"], eventid = d["id"], evt = "1")))])
+                list_item.addContextMenuItems([(lng(30019),'RunPlugin({})'.format(get_url(action = "add_serie", ruleid = d["ruleId"]))), (lng(30018),'RunPlugin({})'.format(get_url(action = "del_record", id = d["id"]))), (lng(30020),'RunPlugin({})'.format(get_url(action = "del_serie", ruleid = d["ruleId"]))), (lng(30016),'RunPlugin({})'.format(get_url(action = "downloading", name = d["event"]["startTime"][8:10] + "." + d["event"]["startTime"][5:7] + ".  " + d["event"]["startTime"][-5:] + " " + d["title"], eventid = d["id"], evt = "1")))])
             else:
-                list_item.addContextMenuItems([(lng(30018),'XBMC.RunPlugin({})'.format(get_url(action = "del_record", id = d["id"]))), (lng(30016),'XBMC.RunPlugin({})'.format(get_url(action = "downloading", name = d["event"]["startTime"][8:10] + "." + d["event"]["startTime"][5:7] + ".  " + d["event"]["startTime"][-5:] + " " + d["title"], eventid = d["id"], evt = "1")))])
+                list_item.addContextMenuItems([(lng(30018),'RunPlugin({})'.format(get_url(action = "del_record", id = d["id"]))), (lng(30016),'RunPlugin({})'.format(get_url(action = "downloading", name = d["event"]["startTime"][8:10] + "." + d["event"]["startTime"][5:7] + ".  " + d["event"]["startTime"][-5:] + " " + d["title"], eventid = d["id"], evt = "1")))])
             xbmcplugin.addDirectoryItem(_handle, url, list_item, False)
         xbmcplugin.endOfDirectory(_handle)
     else:
@@ -222,7 +219,7 @@ def search(query):
                 list_item.setInfo('video', {'mediatype' : 'movie', 'title': d[6], 'plot': d[3], "studio": d[7], 'originaltitle': d[6], "duration": d[8]*60})
                 url = get_url(action='play', eventid = d[1])
                 list_item.setProperty('IsPlayable', 'true')
-                list_item.addContextMenuItems([(lng(30015),'XBMC.RunPlugin({})'.format(get_url(action = "add_recording", eventid = d[1]))), (lng(30016),'XBMC.RunPlugin({})'.format(get_url(action = "downloading", name = d[0].replace("[B]", "").replace("[/B]", ""), eventid = d[1], evt = "0")))])
+                list_item.addContextMenuItems([(lng(30015),'RunPlugin({})'.format(get_url(action = "add_recording", eventid = d[1]))), (lng(30016),'RunPlugin({})'.format(get_url(action = "downloading", name = d[0].replace("[B]", "").replace("[/B]", ""), eventid = d[1], evt = "0")))])
                 xbmcplugin.addDirectoryItem(_handle, url, list_item, False)
             xbmcplugin.endOfDirectory(_handle)
         else:
@@ -268,7 +265,7 @@ def menu_search():
             url = get_url(action='listing_query')
         else:
             url = get_url(action='listing_search', name = name)
-            list_item.addContextMenuItems([(lng(30121),'XBMC.RunPlugin({})'.format(get_url(action = "del_search_history")))])
+            list_item.addContextMenuItems([(lng(30121),'RunPlugin({})'.format(get_url(action = "del_search_history")))])
         xbmcplugin.addDirectoryItem(_handle, url, list_item, True)
     xbmcplugin.endOfDirectory(_handle, cacheToDisc=False)
 
@@ -288,7 +285,7 @@ def list_channels():
         list_item = xbmcgui.ListItem(label=category[0])
         list_item.setArt({'thumb':category[2] , 'icon': category[2]})
         url = get_url(action='listing_days', id = category[1], icon = category[2])
-        list_item.addContextMenuItems([(lng(30007),'XBMC.RunPlugin({})'.format(get_url(action = "play_live", id = category[1], name = category[0], icon = category[2])))])
+        list_item.addContextMenuItems([(lng(30007),'RunPlugin({})'.format(get_url(action = "play_live", id = category[1], name = category[0], icon = category[2])))])
         xbmcplugin.addDirectoryItem(_handle, url, list_item, True)
     xbmcplugin.endOfDirectory(_handle)
 
@@ -320,7 +317,7 @@ def history():
             list_item.setProperty('IsPlayable', 'true')
             url = get_url(action='play', eventid = d['eventid'])
             ind = name_list.index(d)
-            list_item.addContextMenuItems([(lng(30120),'XBMC.RunPlugin({})'.format(get_url(action = "del_history_item", item_index = ind))), (lng(30016),'XBMC.RunPlugin({})'.format(get_url(action = "downloading", name = d["title"].replace("[B]", "").replace("[/B]", ""), eventid = d['eventid'], evt = "0")))])
+            list_item.addContextMenuItems([(lng(30120),'RunPlugin({})'.format(get_url(action = "del_history_item", item_index = ind))), (lng(30016),'RunPlugin({})'.format(get_url(action = "downloading", name = d["title"].replace("[B]", "").replace("[/B]", ""), eventid = d['eventid'], evt = "0")))])
             xbmcplugin.addDirectoryItem(_handle, url, list_item, False)
         xbmcplugin.endOfDirectory(_handle)
     else:
@@ -344,7 +341,7 @@ def list_videos(day,id, icon):
         list_item.setInfo('video', {'mediatype' : 'movie', 'title': d[5], 'plot': d[2], "studio": d[6], "originaltitle": d[5], "duration": d[7]*60})
         list_item.setProperty('IsPlayable', 'true')
         url = get_url(action='play', eventid = d[1])
-        list_item.addContextMenuItems([(lng(30015),'XBMC.RunPlugin({})'.format(get_url(action = "add_recording", eventid = d[1]))), (lng(30016),'XBMC.RunPlugin({})'.format(get_url(action = "downloading", name = d[0].replace("[B]", "").replace("[/B]", ""), eventid = d[1], evt = "0")))])
+        list_item.addContextMenuItems([(lng(30015),'RunPlugin({})'.format(get_url(action = "add_recording", eventid = d[1]))), (lng(30016),'RunPlugin({})'.format(get_url(action = "downloading", name = d[0].replace("[B]", "").replace("[/B]", ""), eventid = d[1], evt = "0")))])
         xbmcplugin.addDirectoryItem(_handle, url, list_item, False)
     xbmcplugin.endOfDirectory(_handle)
 
@@ -358,7 +355,7 @@ def download(name, eventid, evt):
         dialog = xbmcgui.DialogProgressBG()
     else:
         dialog = xbmcgui.DialogProgress()
-    dialog.create("Archiv SledovaniTV",lng(30035))
+    dialog.create("Archiv SledovaniTV", lng(30035))
     if evt == "0":
         html = urlopen("https://sledovanitv.cz/api/event-timeshift?format=m3u8&" + lq[addon.getSetting("quality")] + "&eventId=" + eventid + "&PHPSESSID=" + SESSID).read()
     else:
@@ -381,11 +378,14 @@ def download(name, eventid, evt):
                     break
             r = requests.get(url + ts_filenames[i])
             f.write(r.content)
-            dialog.update((i)*100/(pocetTSFiles - (int(addon.getSetting("end_min")) * 6)), lng(30035), name)
+            if addon.getSetting("dialog") == "true":
+                dialog.update(int(i*100/int(pocetTSFiles - int(addon.getSetting("end_min")) * 6)), lng(30035), name)
+            else:
+                dialog.update(int(i*100/int(pocetTSFiles - int(addon.getSetting("end_min")) * 6)), name)
         f.close()
         dialog.close()
         del dialog
-        yes = xbmcgui.Dialog().yesno("Archiv SledovaniTV", lng(30036), '', name)
+        yes = xbmcgui.Dialog().yesno("Archiv SledovaniTV", lng(30036) + "\n" + name)
         if yes:
             ts_path = path + name
             listitem = xbmcgui.ListItem(path=ts_path)
@@ -395,16 +395,16 @@ def download(name, eventid, evt):
         xbmcgui.Dialog().notification("Archiv SledovaniTV",lng(30032), xbmcgui.NOTIFICATION_INFO, 3000)
 
 
-def play_pvr_live(id):
+def play_pvr_video(id):
     stream = "http://sledovanitv.cz/vlc/api-channel/" + id + ".m3u8?" + lq[addon.getSetting("quality")] + "&PHPSESSID=" + SESSID
     listitem = xbmcgui.ListItem(path=stream)
     if addon.getSetting("inputstream") == "true":
-        listitem.setProperty('inputstreamaddon', 'inputstream.adaptive')
+        listitem.setProperty('inputstream', 'inputstream.adaptive')
         listitem.setProperty('inputstream.adaptive.manifest_type', 'hls')
     xbmcplugin.setResolvedUrl(_handle, True, listitem)
 
 
-def play_pvr_epg(ch, d, n):
+def play_pvr_video_epg(ch, d):
     url = urlopen("http://sledovanitv.cz/api/epg?time=" + d + "&duration=0&detail=0&channels=" + ch + "&PHPSESSID=" + SESSID).read()
     eventid = json.loads(url)["channels"][ch][0]["eventId"]
     html = urlopen("https://sledovanitv.cz/api/event-timeshift?format=m3u8&" + lq[addon.getSetting("quality")] + "&eventId=" + eventid + "&PHPSESSID=" + SESSID).read()
@@ -416,13 +416,12 @@ def play_pvr_epg(ch, d, n):
             logo = "https://sledovanitv.cz/cache/biglogos/" + ch + "-white.png"
         listitem = xbmcgui.ListItem(path=data["url"])
         listitem.setArt({'icon': logo})
-        listitem.setInfo('video', {'mediatype' : 'video', 'title': n})
         if addon.getSetting("inputstream") == "true":
             listitem.setProperty('inputstreamaddon', 'inputstream.adaptive')
             listitem.setProperty('inputstream.adaptive.manifest_type', 'hls')
         xbmcplugin.setResolvedUrl(_handle, True, listitem)
     else:
-        xbmcgui.Dialog().notification("Archiv SledovaniTV","Nedostupné", xbmcgui.NOTIFICATION_INFO, 3000)
+        xbmcgui.Dialog().notification("Archiv SledovaniTV", lng(30032), xbmcgui.NOTIFICATION_INFO, 3000)
 
 
 def play_live_video(id, name, icon):
@@ -431,7 +430,7 @@ def play_live_video(id, name, icon):
     listitem.setArt({'thumb':icon , 'icon': icon})
     listitem.setProperty('IsPlayable', 'true')
     if addon.getSetting("inputstream") == "true":
-        listitem.setProperty('inputstreamaddon', 'inputstream.adaptive')
+        listitem.setProperty('inputstream', 'inputstream.adaptive')
         listitem.setProperty('inputstream.adaptive.manifest_type', 'hls')
     player = xbmc.Player()
     player.play(stream, listitem)
@@ -443,7 +442,7 @@ def play_records(eventid):
     if data["status"] == 1:
         listitem = xbmcgui.ListItem(path=data["url"])
         if addon.getSetting("inputstream") == "true":
-            listitem.setProperty('inputstreamaddon', 'inputstream.adaptive')
+            listitem.setProperty('inputstream', 'inputstream.adaptive')
             listitem.setProperty('inputstream.adaptive.manifest_type', 'hls')
         xbmcplugin.setResolvedUrl(_handle, True, listitem)
     else:
@@ -456,7 +455,7 @@ def play_video(eventid):
     if data["status"] == 1:
         listitem = xbmcgui.ListItem(path=data["url"])
         if addon.getSetting("inputstream") == "true":
-            listitem.setProperty('inputstreamaddon', 'inputstream.adaptive')
+            listitem.setProperty('inputstream', 'inputstream.adaptive')
             listitem.setProperty('inputstream.adaptive.manifest_type', 'hls')
         xbmcplugin.setResolvedUrl(_handle, True, listitem)
         originaltitle = xbmc.getInfoLabel("ListItem.OriginalTitle")
@@ -501,7 +500,7 @@ def list_menu():
         list_item.setArt({'thumb':category[1] , 'icon': category[1]})
         url = get_url(action='listing_menu', id = category[2])
         if category[0] == lng(30005):
-            list_item.addContextMenuItems([(lng(30006),'XBMC.RunPlugin({})'.format(get_url(action = "del_history_playing")))])
+            list_item.addContextMenuItems([(lng(30006),'RunPlugin({})'.format(get_url(action = "del_history_playing")))])
         xbmcplugin.addDirectoryItem(_handle, url, list_item, True)
     xbmcplugin.endOfDirectory(_handle)
 
@@ -518,19 +517,19 @@ def playlist():
         x = x.split("=")
         if x[1] != "":
             dict_id[x[0]] = x[1]
-    f = open(path + "sledovanitv.m3u", "w")
+    f = open(path + "sledovanitv.m3u", "w", encoding="utf-8")
     f.write("#EXTM3U\n")
     html = urlopen("https://sledovanitv.cz/api/playlist?format=m3u8&" + lq[addon.getSetting("quality")] + "&whitelogo=1&PHPSESSID=" + SESSID).read()
     data = json.loads(html)["channels"]
     for d in data:
         if d["timeshiftDuration"] != 0 and d["type"] == "tv" and d["locked"] == "none":
             if addon.getSetting("tvgid_enable") == "true":
-                if dict_id.has_key(d["id"]):
-                    f.write('#EXTINF:-1 tvg-id="' + dict_id[d["id"]] + '",'+ d["name"] +'\n' + 'plugin://plugin.video.archivsledovanitv/?action=play_pvr&id=' + d["id"] + '\n')
+                if d["id"] in dict_id:
+                    f.write('#EXTINF:-1 ' + 'catchup="default" catchup-source="plugin://plugin.video.archivsledovanitv/?action=play_pvr_epg&id=' + d["id"] + '&date={Y}-{m}-{d}+{H}:{M}" catchup-correction="-0.1"' + ' tvg-id="' + dict_id[d["id"]] + '",'+ d["name"] +'\n' + 'plugin://plugin.video.archivsledovanitv/?action=play_pvr&id=' + d["id"] + '\n')
                 else:
-                    f.write("#EXTINF:-1,"+ d["name"] +"\n" + "plugin://plugin.video.archivsledovanitv/?action=play_pvr&id=" + d["id"] + "\n")
+                    f.write("#EXTINF:-1 " + 'catchup="default" catchup-source="plugin://plugin.video.archivsledovanitv/?action=play_pvr_epg&id=' + d["id"] + '&date={Y}-{m}-{d}+{H}:{M}" catchup-correction="-0.1"' + ","+ d["name"] +"\n" + "plugin://plugin.video.archivsledovanitv/?action=play_pvr&id=" + d["id"] + "\n")
             else:
-                f.write("#EXTINF:-1,"+ d["name"] +"\n" + "plugin://plugin.video.archivsledovanitv/?action=play_pvr&id=" + d["id"] + "\n")
+                f.write("#EXTINF:-1 " + 'catchup="default" catchup-source="plugin://plugin.video.archivsledovanitv/?action=play_pvr_epg&id=' + d["id"] + '&date={Y}-{m}-{d}+{H}:{M}" catchup-correction="-0.1"' +","+ d["name"] +"\n" + "plugin://plugin.video.archivsledovanitv/?action=play_pvr&id=" + d["id"] + "\n")
     f.close()
     xbmcgui.Dialog().notification("Archiv SledovaniTV",lng(30017), xbmcgui.NOTIFICATION_INFO, 4000, sound = False)
 
@@ -564,9 +563,9 @@ def router(paramstring):
         elif params['action'] == 'play_live':
             play_live_video(params["id"], params["name"], params["icon"])
         elif params['action'] == 'play_pvr':
-            play_pvr_live(params["id"])
-        elif params['action'] == 'play_pvre':
-            play_pvr_epg(params["channel"], params["date"], params["title"])
+            play_pvr_video(params["id"])
+        elif params['action'] == 'play_pvr_epg':
+            play_pvr_video_epg(params["id"], quote(params["date"]))
         elif params['action'] == 'downloading':
             download(params["name"], params["eventid"], params["evt"])
         elif params['action'] == 'add_recording':
