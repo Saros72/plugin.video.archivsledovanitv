@@ -26,7 +26,7 @@ msgstr "Hľadať reláciu"
 
 msgctxt "#30005"
 msgid "History of watching"
-msgstr "História sledovanie"
+msgstr "História sledovania"
 
 msgctxt "#30006"
 msgid "Clear history"
@@ -138,11 +138,11 @@ msgstr "Nedostupné"
 
 msgctxt "#30033"
 msgid "No watching history"
-msgstr "Žiadna história sledovanie"
+msgstr "Žiadna história sledovania"
 
 msgctxt "#30034"
 msgid "Set the download folder"
-msgstr "Nastavte zložku pre sťahovanie"
+msgstr "Nastavte priečinok pre sťahovanie"
 
 msgctxt "#30035"
 msgid "Downloading: "
@@ -154,7 +154,7 @@ msgstr "Hotovo.  Prehrať video?"
 
 msgctxt "#30037"
 msgid "Set the playlist folder"
-msgstr "Nastavte zložku pre playlist"
+msgstr "Nastavte priečinok pre playlist"
 
 msgctxt "#30100"
 msgid "Login"
@@ -170,7 +170,7 @@ msgstr "Identifikácia zariadenia"
 
 msgctxt "#30103"
 msgid "Unpair (remove device)"
-msgstr "Zrušiť párovanie (odobrať zariadení)"
+msgstr "Zrušiť párovanie (odobrať zariadenie)"
 
 msgctxt "#30104"
 msgid "Video quality"
@@ -182,11 +182,11 @@ msgstr "Logá kanálov"
 
 msgctxt "#30106"
 msgid "Color"
-msgstr "Farebná"
+msgstr "Farebné"
 
 msgctxt "#30107"
 msgid "White"
-msgstr "Biela"
+msgstr "Biele"
 
 msgctxt "#30108"
 msgid "Sorting programs"
@@ -206,7 +206,7 @@ msgstr "Sťahovanie"
 
 msgctxt "#30112"
 msgid "Download folder"
-msgstr "Zložka"
+msgstr "Priečinok"
 
 msgctxt "#30113"
 msgid "Start (+ minutes)"
@@ -218,7 +218,7 @@ msgstr "Koniec (- minút)"
 
 msgctxt "#30115"
 msgid "Background download dialog"
-msgstr "Dialóg sťahovanie na pozadí"
+msgstr "Dialóg sťahovania na pozadí"
 
 msgctxt "#30116"
 msgid "Other"
@@ -226,7 +226,7 @@ msgstr "Ostatné"
 
 msgctxt "#30117"
 msgid "Playlist folder"
-msgstr "Zložka"
+msgstr "Priečinok"
 
 msgctxt "#30118"
 msgid "Generate"
@@ -234,7 +234,7 @@ msgstr "Generovať"
 
 msgctxt "#30119"
 msgid "tvg-id for 365 EPG generator"
-msgstr "tvg-id pro 365 EPG generator"
+msgstr "tvg-id pre 365 EPG generátor"
 
 msgctxt "#30120"
 msgid "Remove"
